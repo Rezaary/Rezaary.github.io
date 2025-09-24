@@ -18,7 +18,6 @@
             align-items: center;
             min-height: 100vh;
             margin: 0;
-            /* Latar belakang tema cinta yang baru */
             background: linear-gradient(to right top, #ff9a9e, #fecfef); 
             color: #333;
             text-align: center;
@@ -38,7 +37,7 @@
             height: 100%;
             background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 24 24"><path fill="%23fcdfe2" d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>');
             background-size: 50px;
-            opacity: 0.1; /* Transparansi samar */
+            opacity: 0.1;
             animation: moveHearts 30s linear infinite;
         }
 
@@ -57,9 +56,9 @@
             animation: slideInUpContainer 1.5s ease-out;
             position: relative;
             z-index: 10;
-            max-height: 80vh; /* Tinggi maksimum sebelum muncul scrollbar */
-            overflow-y: auto; /* Aktifkan scrollbar vertikal */
-            padding-right: 15px; /* Tambahkan ruang untuk scrollbar */
+            max-height: 80vh;
+            overflow-y: auto;
+            padding-right: 15px;
         }
 
         @keyframes slideInUpContainer {
@@ -71,7 +70,7 @@
             font-family: 'Playfair Display', serif;
             font-size: 3.5em;
             margin-bottom: 20px;
-            color: #d8527a; /* Warna merah muda yang lebih dalam */
+            color: #d8527a;
             text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
             animation: popInTitle 1s ease-out;
         }
@@ -89,7 +88,7 @@
             margin-top: -10px;
             margin-bottom: 30px;
             animation: fadeInText 2s ease-in-out forwards;
-            opacity: 0; /* Mulai tersembunyi */
+            opacity: 0;
         }
 
         @keyframes fadeInText {
@@ -103,19 +102,17 @@
             margin-bottom: 25px;
             color: #555;
             text-align: left;
-            opacity: 0; /* Mulai tersembunyi */
+            opacity: 0;
             transform: translateY(20px);
             animation: revealMessage 1s ease-out forwards;
         }
 
-        /* Delay untuk setiap paragraf */
         .message-section p:nth-child(1) { animation-delay: 1.5s; }
         .message-section p:nth-child(2) { animation-delay: 2.5s; }
         .message-section p:nth-child(3) { animation-delay: 3.5s; }
         .message-section p:nth-child(4) { animation-delay: 4.5s; }
-        .message-section p:nth-child(5) { animation-delay: 5.5s; } /* Jika ada paragraf tambahan */
+        .message-section p:nth-child(5) { animation-delay: 5.5s; }
         .message-section p:nth-child(6) { animation-delay: 6.5s; }
-
 
         @keyframes revealMessage {
             to { opacity: 1; transform: translateY(0); }
@@ -126,7 +123,7 @@
             font-size: 1.8em;
             margin-top: 40px;
             color: #d8527a;
-            animation: fadeInText 2s ease-in-out 6s forwards; /* Delay setelah semua pesan muncul */
+            animation: fadeInText 2s ease-in-out 6s forwards;
             opacity: 0;
         }
 
@@ -157,7 +154,7 @@
         }
 
         .input-area button {
-            background-color: #d8527a; /* Warna tombol */
+            background-color: #d8527a;
             color: white;
             padding: 12px 30px;
             border: none;
@@ -197,23 +194,21 @@
         .music-toggle:hover {
             background-color: rgba(0, 0, 0, 0.8);
         }
-
-        /* Tambahkan CSS untuk menyembunyikan iframe YouTube */
+        
         #youtube-player {
             position: absolute;
-            top: -9999px; /* Pindahkan keluar dari layar */
+            top: -9999px;
             left: -9999px;
-            width: 1px; /* Jadikan sangat kecil */
+            width: 1px;
             height: 1px;
-            opacity: 0; /* Sembunyikan sepenuhnya */
-            pointer-events: none; /* Jangan bisa diklik */
+            opacity: 0;
+            pointer-events: none;
         }
-
-        /* Efek partikel hati */
+        
         .heart-particle {
             position: absolute;
-            background-color: #ff99a9; /* Warna hati */
-            transform: rotate(45deg); /* Bentuk hati */
+            background-color: #ff99a9;
+            transform: rotate(45deg);
             animation: floatUp 5s ease-out forwards;
             pointer-events: none;
             z-index: 5;
@@ -239,6 +234,25 @@
         @keyframes floatUp {
             0% { transform: translate(0, 0) rotate(45deg); opacity: 1; }
             100% { transform: translate(var(--x-end), var(--y-end)) rotate(45deg); opacity: 0; }
+        }
+
+        /* MEDIA QUERIES untuk responsivitas */
+        @media (max-width: 768px) {
+            .container {
+                padding: 30px;
+            }
+            
+            h1 {
+                font-size: 2.5em;
+            }
+
+            h2#recipientName, h2#main-title {
+                font-size: 1.8em;
+            }
+            
+            .message-section p {
+                font-size: 1em;
+            }
         }
     </style>
 </head>
@@ -283,66 +297,47 @@
     </div>
 
     <script>
-        let player; // Variabel untuk menyimpan objek YouTube Player API
-        let isMuted = true; // Status bisu
-        let isPlaying = false; // Status putar musik
-
-        // Memuat YouTube IFrame Player API
+        let player;
+        let isMuted = true;
+        
         function onYouTubeIframeAPIReady() {
             player = new YT.Player('youtube-player', {
                 events: {
-                    'onReady': onPlayerReady,
-                    'onStateChange': onPlayerStateChange
+                    'onReady': onPlayerReady
                 }
             });
         }
 
-        // Ketika player YouTube siap
         function onPlayerReady(event) {
             event.target.mute();
             isMuted = true;
             event.target.playVideo();
-            isPlaying = true; // Musik mulai diputar (dalam mode muted)
-            musicToggle.innerText = '🔇'; // Ikon mute saat pertama kali dimuat
-            event.target.pauseVideo();
-            musicToggle.innerText = '▶️'; // Tampilkan ikon play karena musik di-pause
+            // Video akan otomatis di-pause oleh browser, jadi kita bisa langsung menampilkan ikon play
+            document.getElementById('musicToggle').innerText = '▶️';
         }
 
-        // Ketika status player berubah (misal: play, pause, ended)
-        function onPlayerStateChange(event) {
-            if (event.data === YT.PlayerState.ENDED) {
-                player.playVideo(); // Putar ulang jika berakhir (untuk loop)
-            }
-        }
-
-        // Fungsi untuk mengontrol musik (play/pause/mute/unmute)
         function toggleMusic() {
             if (!player) return;
 
-            if (player.getPlayerState() === YT.PlayerState.PLAYING) {
-                player.pauseVideo();
-                musicToggle.innerText = '▶️'; // Icon play
-                isPlaying = false;
-            } else {
-                player.playVideo();
-                musicToggle.innerText = '⏸️'; // Icon pause
-                isPlaying = true;
-            }
-
-            // Atur status mute/unmute
-            if (isMuted) {
+            if (player.isMuted()) {
                 player.unMute();
                 isMuted = false;
+                if (player.getPlayerState() !== YT.PlayerState.PLAYING) {
+                    player.playVideo();
+                }
+                document.getElementById('musicToggle').innerText = '⏸️';
             } else {
                 player.mute();
                 isMuted = true;
+                if (player.getPlayerState() === YT.PlayerState.PLAYING) {
+                    player.pauseVideo();
+                }
+                document.getElementById('musicToggle').innerText = '▶️';
             }
         }
-
-        // Event listener untuk tombol musik
+        
         document.getElementById('musicToggle').addEventListener('click', toggleMusic);
 
-        // Memuat script YouTube IFrame Player API secara asinkron
         const tag = document.createElement('script');
         tag.src = "https://www.youtube.com/iframe_api";
         const firstScriptTag = document.getElementsByTagName('script')[0];
@@ -359,46 +354,42 @@
                 alert("Tolong masukkan nama kesayanganmu dulu ya!");
                 return;
             }
-
-            // Set the recipient's name
+            
             recipientName.innerText = `Untuk ${partnerName}, Cintaku ❤️`;
-            senderSignature.innerText = `Dari Akuu Rezaa Semoga Kamu Suka Yaaaa...`; // Ganti dengan nama Anda
+            senderSignature.innerText = `Dari Akuu Rezaa Semoga Kamu Suka Yaaaa...`;
 
             initialState.style.display = 'none';
             revealedMessage.style.display = 'block';
-
-            // Start heart particles effect
+            
             createHeartParticles();
         }
 
         function createHeartParticles() {
-            const numHearts = 15; // Jumlah hati yang muncul
+            const numHearts = 15;
             for (let i = 0; i < numHearts; i++) {
                 const heart = document.createElement('div');
                 heart.classList.add('heart-particle');
-                const size = Math.random() * 20 + 10; // Ukuran hati
+                const size = Math.random() * 20 + 10;
                 heart.style.width = `${size}px`;
                 heart.style.height = `${size}px`;
-                heart.style.left = `${Math.random() * 100}vw`; // Posisi horizontal acak
-                heart.style.bottom = `${-size}px`; // Mulai dari bawah layar
+                heart.style.left = `${Math.random() * 100}vw`;
+                heart.style.bottom = `${-size}px`;
 
-                // Variabel CSS untuk animasi akhir
-                heart.style.setProperty('--x-end', `${(Math.random() - 0.5) * 200}px`); // Bergerak ke kiri/kanan
-                heart.style.setProperty('--y-end', `-${window.innerHeight + size}px`); // Bergerak ke atas
-                heart.style.animationDuration = `${Math.random() * 4 + 3}s`; // Durasi animasi
-                heart.style.animationDelay = `${Math.random() * 0.5}s`; // Delay untuk efek berurutan
+                heart.style.setProperty('--x-end', `${(Math.random() - 0.5) * 200}px`);
+                heart.style.setProperty('--y-end', `-${window.innerHeight + size}px`);
+                heart.style.animationDuration = `${Math.random() * 4 + 3}s`;
+                heart.style.animationDelay = `${Math.random() * 0.5}s`;
 
                 document.body.appendChild(heart);
 
-                // Hapus hati setelah animasi selesai
                 heart.addEventListener('animationend', () => {
                     heart.remove();
                 });
             }
         }
-
-        // Jalankan efek partikel hati secara berkala
-        setInterval(createHeartParticles, 3000); // Buat partikel baru setiap 3 detik
+        
+        // Buat partikel hati setiap beberapa detik untuk efek berkelanjutan
+        setInterval(createHeartParticles, 3000);
     </script>
 </body>
 </html>
