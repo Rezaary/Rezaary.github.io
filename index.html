@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Untuk Cintaku di Hari Spesialmu ❤️</title>
+
+    <link rel="shortcut icon" href="LOVEYOUUU.png" type="image/x-icon">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Open+Sans:ital,wght@0,400;0,700;1,400&family=Dancing+Script:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Open Sans', sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            /* Latar belakang tema cinta yang baru */
+            background: linear-gradient(to right top, #ff9a9e, #fecfef); 
+            color: #333;
+            text-align: center;
+            overflow: hidden;
+            position: relative;
+            animation: fadeInBackground 2s ease-out;
+        }
+
+        @keyframes fadeInBackground {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .heart-bg {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 24 24"><path fill="%23fcdfe2" d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>');
+            background-size: 50px;
+            opacity: 0.1; /* Transparansi samar */
+            animation: moveHearts 30s linear infinite;
+        }
+
+        @keyframes moveHearts {
+            from { background-position: 0 0; }
+            to { background-position: 500px 500px; }
+        }
+
+        .container {
+            background-color: rgba(255, 255, 255, 0.9);
+            padding: 50px;
+            border-radius: 20px;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
+            max-width: 700px;
+            width: 90%;
+            animation: slideInUpContainer 1.5s ease-out;
+            position: relative;
+            z-index: 10;
+            max-height: 80vh; /* Tinggi maksimum sebelum muncul scrollbar */
+            overflow-y: auto; /* Aktifkan scrollbar vertikal */
+            padding-right: 15px; /* Tambahkan ruang untuk scrollbar */
+        }
+
+        @keyframes slideInUpContainer {
+            from { transform: translateY(50px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+
+        h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 3.5em;
+            margin-bottom: 20px;
+            color: #d8527a; /* Warna merah muda yang lebih dalam */
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
+            animation: popInTitle 1s ease-out;
+        }
+
+        @keyframes popInTitle {
+            0% { transform: scale(0.5); opacity: 0; }
+            80% { transform: scale(1.1); opacity: 1; }
+            100% { transform: scale(1); }
+        }
+
+        h2#recipientName, h2#main-title {
+            font-family: 'Dancing Script', cursive;
+            font-size: 2.2em;
+            color: #ee82a3;
+            margin-top: -10px;
+            margin-bottom: 30px;
+            animation: fadeInText 2s ease-in-out forwards;
+            opacity: 0; /* Mulai tersembunyi */
+        }
+
+        @keyframes fadeInText {
+            to { opacity: 1; }
+        }
+
+        .message-section p {
+            font-family: 'Open Sans', sans-serif;
+            font-size: 1.1em;
+            line-height: 1.8;
+            margin-bottom: 25px;
+            color: #555;
+            text-align: left;
+            opacity: 0; /* Mulai tersembunyi */
+            transform: translateY(20px);
+            animation: revealMessage 1s ease-out forwards;
+        }
+
+        /* Delay untuk setiap paragraf */
+        .message-section p:nth-child(1) { animation-delay: 1.5s; }
+        .message-section p:nth-child(2) { animation-delay: 2.5s; }
+        .message-section p:nth-child(3) { animation-delay: 3.5s; }
+        .message-section p:nth-child(4) { animation-delay: 4.5s; }
+        .message-section p:nth-child(5) { animation-delay: 5.5s; } /* Jika ada paragraf tambahan */
+        .message-section p:nth-child(6) { animation-delay: 6.5s; }
+
+
+        @keyframes revealMessage {
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .signature {
+            font-family: 'Dancing Script', cursive;
+            font-size: 1.8em;
+            margin-top: 40px;
+            color: #d8527a;
+            animation: fadeInText 2s ease-in-out 6s forwards; /* Delay setelah semua pesan muncul */
+            opacity: 0;
+        }
+
+        .input-area {
+            margin-top: 30px;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            align-items: center;
+        }
+
+        .input-area input[type="text"] {
+            padding: 12px 20px;
+            border-radius: 8px;
+            border: 1px solid #ffcccb;
+            width: 100%;
+            max-width: 350px;
+            font-size: 1em;
+            background-color: #fff9f9;
+            color: #444;
+            transition: border-color 0.3s ease;
+        }
+
+        .input-area input[type="text"]:focus {
+            outline: none;
+            border-color: #d8527a;
+            box-shadow: 0 0 8px rgba(216, 82, 122, 0.2);
+        }
+
+        .input-area button {
+            background-color: #d8527a; /* Warna tombol */
+            color: white;
+            padding: 12px 30px;
+            border: none;
+            border-radius: 8px;
+            font-size: 1.1em;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .input-area button:hover {
+            background-color: #c0456a;
+            transform: translateY(-2px);
+        }
+
+        .music-toggle {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background-color: rgba(0, 0, 0, 0.6);
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            font-size: 1.5em;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            z-index: 100;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+            transition: background-color 0.3s ease;
+        }
+
+        .music-toggle:hover {
+            background-color: rgba(0, 0, 0, 0.8);
+        }
+
+        /* Tambahkan CSS untuk menyembunyikan iframe YouTube */
+        #youtube-player {
+            position: absolute;
+            top: -9999px; /* Pindahkan keluar dari layar */
+            left: -9999px;
+            width: 1px; /* Jadikan sangat kecil */
+            height: 1px;
+            opacity: 0; /* Sembunyikan sepenuhnya */
+            pointer-events: none; /* Jangan bisa diklik */
+        }
+
+        /* Efek partikel hati */
+        .heart-particle {
+            position: absolute;
+            background-color: #ff99a9; /* Warna hati */
+            transform: rotate(45deg); /* Bentuk hati */
+            animation: floatUp 5s ease-out forwards;
+            pointer-events: none;
+            z-index: 5;
+            opacity: 0;
+        }
+        .heart-particle::before, .heart-particle::after {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            background-color: #ff99a9;
+        }
+        .heart-particle::before {
+            top: -50%;
+            left: 0;
+        }
+        .heart-particle::after {
+            left: 50%;
+            top: 0;
+        }
+
+        @keyframes floatUp {
+            0% { transform: translate(0, 0) rotate(45deg); opacity: 1; }
+            100% { transform: translate(var(--x-end), var(--y-end)) rotate(45deg); opacity: 0; }
+        }
+    </style>
+</head>
+<body>
+    <div class="heart-bg"></div>
+
+    <iframe id="youtube-player"
+        src="https://www.youtube.com/embed/HDRsMqNhMLc?autoplay=1&mute=1&loop=1&playlist=HDRsMqNhMLc&enablejsapi=1"
+        frameborder="0"
+        allow="autoplay; encrypted-media"
+        allowfullscreen>
+    </iframe>
+
+    <button class="music-toggle" id="musicToggle">
+        ▶️
+    </button>
+
+    <div class="container">
+        <div id="initial-state">
+            <h1>Selamat Ulang Tahun SayaangggggKuuuuu, Cintaku!</h1>
+            <p>Sebuah pesan yang mungkin engga terlalu spesial bagikamu tapi ini aku bikin cuman buat kamu dan ini pertama aku bikin yang kaya gini, di hari istimewa kamu ini semoga kamu sehat sehat terus kuliahnya lancaar dan kamu bisa lulus kuliah dengan nilai terbaik, akuu ngucapin terimakasih buat kamu karna udah ngasih aku ruang buat kenal dan dekat sama kamu, semoga aku sama kamu sama sama terus Yaaaa, I Love You ❤️.</p>
+            <div class="input-area">
+                <input type="text" id="partnerNameInput" placeholder="Masukin Nama Kamu Yaaaa Sayaanggggg....">
+                <button onclick="revealMessage()">Buka Pesan Spesial</button>
+            </div>
+        </div>
+
+        <div id="revealed-message" style="display:none;">
+            <h1 id="main-title">Selamat Ulang Tahun</h1>
+            <h2 id="main-title">Yang Ke 21Tahun Sayanggg❤️</h2>
+            <h2 id="recipientName"></h2>
+            <div class="message-section">
+                <p>Sayangku,</p>
+                <p>Di hari yang spesial ini, setiap bintang di langit seolah ikut merayakan hadirmu di dunia. Kamu adalah anugerah terindah yang pernah Tuhan kirimkan dalam hidupku. Terima kasih telah mengisi hari-hariku dengan tawa, cinta, dan kehangatan yang tak tergantikan.</p>
+                <p>Setiap momen bersamamu adalah pelajaran berharga tentang cinta sejati, kesabaran, dan kebahagiaan yang sederhana. Aku berjanji akan selalu ada di sampingmu, melewati suka dan duka, merayakan setiap keberhasilanmu, dan memelukmu erat saat dunia terasa berat.</p>
+                <p>Semoga di usiamu yang baru ini, kamu semakin diberkahi kebahagiaan, kesehatan, kesuksesan, dan semua impianmu dapat terwujud. Teruslah menjadi dirimu yang luar biasa, dengan hati selembut sutra dan semangat sekuat baja.</p>
+                <p>Aku mencintaimu lebih dari kata-kata bisa ungkapkan. Selamanya dan selalu.</p>
+                <p>Semoga kamu suka yaa ayaang apa yang aku bikin ini, LOVE YOU MORE SAYANG ❤️❤️</p>
+            </div>
+            <p class="signature" id="senderSignature"></p>
+        </div>
+    </div>
+
+    <script>
+        let player; // Variabel untuk menyimpan objek YouTube Player API
+        let isMuted = true; // Status bisu
+        let isPlaying = false; // Status putar musik
+
+        // Memuat YouTube IFrame Player API
+        function onYouTubeIframeAPIReady() {
+            player = new YT.Player('youtube-player', {
+                events: {
+                    'onReady': onPlayerReady,
+                    'onStateChange': onPlayerStateChange
+                }
+            });
+        }
+
+        // Ketika player YouTube siap
+        function onPlayerReady(event) {
+            event.target.mute();
+            isMuted = true;
+            event.target.playVideo();
+            isPlaying = true; // Musik mulai diputar (dalam mode muted)
+            musicToggle.innerText = '🔇'; // Ikon mute saat pertama kali dimuat
+            event.target.pauseVideo();
+            musicToggle.innerText = '▶️'; // Tampilkan ikon play karena musik di-pause
+        }
+
+        // Ketika status player berubah (misal: play, pause, ended)
+        function onPlayerStateChange(event) {
+            if (event.data === YT.PlayerState.ENDED) {
+                player.playVideo(); // Putar ulang jika berakhir (untuk loop)
+            }
+        }
+
+        // Fungsi untuk mengontrol musik (play/pause/mute/unmute)
+        function toggleMusic() {
+            if (!player) return;
+
+            if (player.getPlayerState() === YT.PlayerState.PLAYING) {
+                player.pauseVideo();
+                musicToggle.innerText = '▶️'; // Icon play
+                isPlaying = false;
+            } else {
+                player.playVideo();
+                musicToggle.innerText = '⏸️'; // Icon pause
+                isPlaying = true;
+            }
+
+            // Atur status mute/unmute
+            if (isMuted) {
+                player.unMute();
+                isMuted = false;
+            } else {
+                player.mute();
+                isMuted = true;
+            }
+        }
+
+        // Event listener untuk tombol musik
+        document.getElementById('musicToggle').addEventListener('click', toggleMusic);
+
+        // Memuat script YouTube IFrame Player API secara asinkron
+        const tag = document.createElement('script');
+        tag.src = "https://www.youtube.com/iframe_api";
+        const firstScriptTag = document.getElementsByTagName('script')[0];
+        firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+
+        function revealMessage() {
+            const partnerName = document.getElementById('partnerNameInput').value.trim();
+            const initialState = document.getElementById('initial-state');
+            const revealedMessage = document.getElementById('revealed-message');
+            const recipientName = document.getElementById('recipientName');
+            const senderSignature = document.getElementById('senderSignature');
+
+            if (partnerName === "") {
+                alert("Tolong masukkan nama kesayanganmu dulu ya!");
+                return;
+            }
+
+            // Set the recipient's name
+            recipientName.innerText = `Untuk ${partnerName}, Cintaku ❤️`;
+            senderSignature.innerText = `Dari Akuu Rezaa Semoga Kamu Suka Yaaaa...`; // Ganti dengan nama Anda
+
+            initialState.style.display = 'none';
+            revealedMessage.style.display = 'block';
+
+            // Start heart particles effect
+            createHeartParticles();
+        }
+
+        function createHeartParticles() {
+            const numHearts = 15; // Jumlah hati yang muncul
+            for (let i = 0; i < numHearts; i++) {
+                const heart = document.createElement('div');
+                heart.classList.add('heart-particle');
+                const size = Math.random() * 20 + 10; // Ukuran hati
+                heart.style.width = `${size}px`;
+                heart.style.height = `${size}px`;
+                heart.style.left = `${Math.random() * 100}vw`; // Posisi horizontal acak
+                heart.style.bottom = `${-size}px`; // Mulai dari bawah layar
+
+                // Variabel CSS untuk animasi akhir
+                heart.style.setProperty('--x-end', `${(Math.random() - 0.5) * 200}px`); // Bergerak ke kiri/kanan
+                heart.style.setProperty('--y-end', `-${window.innerHeight + size}px`); // Bergerak ke atas
+                heart.style.animationDuration = `${Math.random() * 4 + 3}s`; // Durasi animasi
+                heart.style.animationDelay = `${Math.random() * 0.5}s`; // Delay untuk efek berurutan
+
+                document.body.appendChild(heart);
+
+                // Hapus hati setelah animasi selesai
+                heart.addEventListener('animationend', () => {
+                    heart.remove();
+                });
+            }
+        }
+
+        // Jalankan efek partikel hati secara berkala
+        setInterval(createHeartParticles, 3000); // Buat partikel baru setiap 3 detik
+    </script>
+</body>
+</html>
