@@ -18,7 +18,8 @@
             align-items: center;
             min-height: 100vh;
             margin: 0;
-            background: linear-gradient(to right top, #ffecd2, #fcb69f); /* Warna gradien lembut */
+            /* Latar belakang tema cinta yang baru */
+            background: linear-gradient(to right top, #ff9a9e, #fecfef); 
             color: #333;
             text-align: center;
             overflow: hidden;
@@ -56,6 +57,9 @@
             animation: slideInUpContainer 1.5s ease-out;
             position: relative;
             z-index: 10;
+            max-height: 80vh; /* Tinggi maksimum sebelum muncul scrollbar */
+            overflow-y: auto; /* Aktifkan scrollbar vertikal */
+            padding-right: 15px; /* Tambahkan ruang untuk scrollbar */
         }
 
         @keyframes slideInUpContainer {
@@ -78,7 +82,7 @@
             100% { transform: scale(1); }
         }
 
-        h2#recipientName {
+        h2#recipientName, h2#main-title {
             font-family: 'Dancing Script', cursive;
             font-size: 2.2em;
             color: #ee82a3;
@@ -110,6 +114,7 @@
         .message-section p:nth-child(3) { animation-delay: 3.5s; }
         .message-section p:nth-child(4) { animation-delay: 4.5s; }
         .message-section p:nth-child(5) { animation-delay: 5.5s; } /* Jika ada paragraf tambahan */
+        .message-section p:nth-child(6) { animation-delay: 6.5s; }
 
 
         @keyframes revealMessage {
@@ -248,13 +253,13 @@
     </iframe>
 
     <button class="music-toggle" id="musicToggle">
-        🎶
+        ▶️
     </button>
 
     <div class="container">
         <div id="initial-state">
-            <h1>Selamat Ulang Tahun Yang Ke 21Tahun Sayaanggggg, Cintaku!</h1>
-            <p>Sebuah pesan spesial untukmu di hari istimewa ini.</p>
+            <h1>Selamat Ulang Tahun SayaangggggKuuuuu, Cintaku!</h1>
+            <p>Sebuah pesan yang mungkin engga terlalu spesial bagikamu tapi ini aku bikin cuman buat kamu dan ini pertama aku bikin yang kaya gini, di hari istimewa kamu ini semoga kamu sehat sehat terus kuliahnya lancaar dan kamu bisa lulus kuliah dengan nilai terbaik, akuu ngucapin terimakasih buat kamu karna udah ngasih aku ruang buat kenal dan dekat sama kamu, semoga aku sama kamu sama sama terus Yaaaa, I Love You ❤️.</p>
             <div class="input-area">
                 <input type="text" id="partnerNameInput" placeholder="Masukin Nama Kamu Yaaaa Sayaanggggg....">
                 <button onclick="revealMessage()">Buka Pesan Spesial</button>
@@ -263,14 +268,15 @@
 
         <div id="revealed-message" style="display:none;">
             <h1 id="main-title">Selamat Ulang Tahun</h1>
+            <h2 id="main-title">Yang Ke 21Tahun Sayanggg❤️</h2>
             <h2 id="recipientName"></h2>
             <div class="message-section">
-                <p>Sayangku,
-                Di hari yang spesial ini, setiap bintang di langit seolah ikut merayakan hadirmu di dunia. Kamu adalah anugerah terindah yang pernah Tuhan kirimkan dalam hidupku. Terima kasih telah mengisi hari-hariku dengan tawa, cinta, dan kehangatan yang tak tergantikan.
-                Setiap momen bersamamu adalah pelajaran berharga tentang cinta sejati, kesabaran, dan kebahagiaan yang sederhana. Aku berjanji akan selalu ada di sampingmu, melewati suka dan duka, merayakan setiap keberhasilanmu, dan memelukmu erat saat dunia terasa berat.
-                Semoga di usiamu yang baru ini, kamu semakin diberkahi kebahagiaan, kesehatan, kesuksesan, dan semua impianmu dapat terwujud. Teruslah menjadi dirimu yang luar biasa, dengan hati selembut sutra dan semangat sekuat baja.
-                Aku mencintaimu lebih dari kata-kata bisa ungkapkan. Selamanya dan selalu.</p>
-                <p>Semoga kamu suka yaa ayaang apa yang aku bikin ini, LOVE YOU MORE SAYANG:*</p>
+                <p>Sayangku,</p>
+                <p>Di hari yang spesial ini, setiap bintang di langit seolah ikut merayakan hadirmu di dunia. Kamu adalah anugerah terindah yang pernah Tuhan kirimkan dalam hidupku. Terima kasih telah mengisi hari-hariku dengan tawa, cinta, dan kehangatan yang tak tergantikan.</p>
+                <p>Setiap momen bersamamu adalah pelajaran berharga tentang cinta sejati, kesabaran, dan kebahagiaan yang sederhana. Aku berjanji akan selalu ada di sampingmu, melewati suka dan duka, merayakan setiap keberhasilanmu, dan memelukmu erat saat dunia terasa berat.</p>
+                <p>Semoga di usiamu yang baru ini, kamu semakin diberkahi kebahagiaan, kesehatan, kesuksesan, dan semua impianmu dapat terwujud. Teruslah menjadi dirimu yang luar biasa, dengan hati selembut sutra dan semangat sekuat baja.</p>
+                <p>Aku mencintaimu lebih dari kata-kata bisa ungkapkan. Selamanya dan selalu.</p>
+                <p>Semoga kamu suka yaa ayaang apa yang aku bikin ini, LOVE YOU MORE SAYANG ❤️❤️</p>
             </div>
             <p class="signature" id="senderSignature"></p>
         </div>
@@ -278,6 +284,7 @@
 
     <script>
         let player; // Variabel untuk menyimpan objek YouTube Player API
+        let isMuted = true; // Status bisu
         let isPlaying = false; // Status putar musik
 
         // Memuat YouTube IFrame Player API
@@ -292,17 +299,17 @@
 
         // Ketika player YouTube siap
         function onPlayerReady(event) {
-            // Atur volume ke 0 (mute) saat siap, sesuai dengan kebijakan autoplay browser
             event.target.mute();
-            // Coba putar video
+            isMuted = true;
             event.target.playVideo();
-            isPlaying = false; // Anggap sebagai sedang diputar (tapi muted)
-            musicToggle.innerText = '🔇'; // Tampilkan ikon mute
+            isPlaying = true; // Musik mulai diputar (dalam mode muted)
+            musicToggle.innerText = '🔇'; // Ikon mute saat pertama kali dimuat
+            event.target.pauseVideo();
+            musicToggle.innerText = '▶️'; // Tampilkan ikon play karena musik di-pause
         }
 
         // Ketika status player berubah (misal: play, pause, ended)
         function onPlayerStateChange(event) {
-            // Jika video berakhir dan ada di playlist, ia akan mengulang
             if (event.data === YT.PlayerState.ENDED) {
                 player.playVideo(); // Putar ulang jika berakhir (untuk loop)
             }
@@ -310,14 +317,25 @@
 
         // Fungsi untuk mengontrol musik (play/pause/mute/unmute)
         function toggleMusic() {
-            if (player) {
-                if (player.isMuted()) {
-                    player.pause();
-                    musicToggle.innerText = '⏸️'; // Icon pause
-                } else {
-                    player.mute();
-                    musicToggle.innerText = '🔇'; // Icon mute
-                }
+            if (!player) return;
+
+            if (player.getPlayerState() === YT.PlayerState.PLAYING) {
+                player.pauseVideo();
+                musicToggle.innerText = '▶️'; // Icon play
+                isPlaying = false;
+            } else {
+                player.playVideo();
+                musicToggle.innerText = '⏸️'; // Icon pause
+                isPlaying = true;
+            }
+
+            // Atur status mute/unmute
+            if (isMuted) {
+                player.unMute();
+                isMuted = false;
+            } else {
+                player.mute();
+                isMuted = true;
             }
         }
 
@@ -329,7 +347,6 @@
         tag.src = "https://www.youtube.com/iframe_api";
         const firstScriptTag = document.getElementsByTagName('script')[0];
         firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
-
 
         function revealMessage() {
             const partnerName = document.getElementById('partnerNameInput').value.trim();
@@ -380,12 +397,8 @@
             }
         }
 
-        // Trigger particles after messages are revealed
-        setTimeout(createHeartParticles, 7000); // Trigger after ~7 seconds (adjust based on message animation delays)
-
+        // Jalankan efek partikel hati secara berkala
+        setInterval(createHeartParticles, 3000); // Buat partikel baru setiap 3 detik
     </script>
 </body>
-
 </html>
-
-
