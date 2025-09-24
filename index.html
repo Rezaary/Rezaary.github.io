@@ -296,7 +296,7 @@
             event.target.mute();
             // Coba putar video
             event.target.playVideo();
-            isPlaying = true; // Anggap sebagai sedang diputar (tapi muted)
+            isPlaying = false; // Anggap sebagai sedang diputar (tapi muted)
             musicToggle.innerText = '🔇'; // Tampilkan ikon mute
         }
 
@@ -387,3 +387,4 @@
 </body>
 
 </html>
+
