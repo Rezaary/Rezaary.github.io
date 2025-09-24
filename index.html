@@ -312,7 +312,7 @@
         function toggleMusic() {
             if (player) {
                 if (player.isMuted()) {
-                    player.unMute();
+                    player.pause();
                     musicToggle.innerText = '⏸️'; // Icon pause
                 } else {
                     player.mute();
@@ -387,4 +387,5 @@
 </body>
 
 </html>
+
 
